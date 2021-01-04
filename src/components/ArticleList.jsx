@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useHistory} from 'react-router-dom'
+import {Link, useHistory, withRouter} from 'react-router-dom'
 import { TodoContext } from '../TodoContext';
 
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
@@ -25,12 +25,14 @@ const useStyles = makeStyles((theme) =>
 function ArticleListItem({text, like, id}) {
   const classes = useStyles();
   const history = useHistory()
+  
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {/* <Link to={() => history.push(`/${id}`)}>{text}</Link> */}
-          <Link to='/1'>{text}</Link>
+        <Typography variant="body2" color="textSecondary" component="p" onClick={() => {
+            history.push(`/${id}`)}}>
+          {text}
+          {/* <Link to='/1'>{text}</Link> */}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -51,9 +53,9 @@ const ArticleList = () => {
         <div className='article-list'>
             <Grid container>
                 
-                  {todos.map(obj => {
-                    return <Grid item xs={3}>
-                    <ArticleListItem text={obj.text} id={obj.id} key={obj.id} like={obj.like} />
+                  {todos.map((obj,index) => {
+                    return <Grid item key={index}  xs={3}>
+                    <ArticleListItem text={obj.text} id={obj.id} like={obj.like} />
                     </Grid>
                   })}  
                 
@@ -63,4 +65,4 @@ const ArticleList = () => {
     )
 }
 
-export default ArticleList
+export default withRouter(ArticleList)

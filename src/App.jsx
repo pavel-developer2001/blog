@@ -14,10 +14,10 @@ const App = () => {
          <Switch>
            <Route exact path='/' component={Home} />
            <Route exact path='/create' component={CreateArticle} />
-           {/* <Route path='/:id' render={({match}) => {
+           <Route path='/:id' render={({match}) => {
         const {id} = match.params;
-        return <Article id ={id}/> }} /> */}
-        <Route exact path='/:id' component={Article} />
+        return <Article arcId ={id}/> }} />
+        {/* <Route exact path='/:id' component={Article} /> */}
          </Switch>
       </Router>
       </TodoContextProvider>

@@ -12,11 +12,11 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import {TodoContext} from '../TodoContext'
 
-const Article= ({id}) => {
+const Article= ({arcId}) => {
     const [off, setOff] = React.useState(false)
     const {todos} = React.useContext(TodoContext)
-    // const item = todos.filter((prev) => prev.filter((_, cId) => id == cId))
-    // console.log(item)
+    const findItem = todos.find((todo) => todo.id == arcId)
+
     return (
         <div className='article'>
              <Grid container>
@@ -29,10 +29,10 @@ const Article= ({id}) => {
                 </Grid>
                 <Grid item xs={7}>
                     <Typography variant="h4" gutterBottom>
-                        {todos.title}
+                        {findItem.title}
                     </Typography>
                     <Typography variant="body2" gutterBottom>
-        {todos.text}
+        {findItem.text}
                     </Typography>
                 </Grid>
                 <Grid item xs={3}>
