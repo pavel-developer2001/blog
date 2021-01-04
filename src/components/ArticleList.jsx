@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-function ArticleListItem({text, like, id}) {
+function ArticleListItem({title, like, id}) {
   const classes = useStyles();
   const history = useHistory()
   
@@ -31,7 +31,7 @@ function ArticleListItem({text, like, id}) {
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p" onClick={() => {
             history.push(`/${id}`)}}>
-          {text}
+          {title}
           {/* <Link to='/1'>{text}</Link> */}
         </Typography>
       </CardContent>
@@ -53,9 +53,9 @@ const ArticleList = () => {
         <div className='article-list'>
             <Grid container>
                 
-                  {todos.map((obj,index) => {
-                    return <Grid item key={index}  xs={3}>
-                    <ArticleListItem text={obj.text} id={obj.id} like={obj.like} />
+                  {todos.map((obj) => {
+                    return <Grid item key={obj.id}  xs={3}>
+                    <ArticleListItem title={obj.title} id={obj.id} like={obj.like} />
                     </Grid>
                   })}  
                 

@@ -36,12 +36,17 @@ const CreateArticle = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newItem = { id: todo.length + 1, title, text, like: 0}
-        addTodo(newItem)
-        setTitle('')
-        setText('')
-        console.log(todos)
-        history.push('/')
+        if(title.length > 0){
+            const newItem = { id: todo.length + 1, title, text, like: 0}
+            addTodo(newItem)
+            setTitle('')
+            setText('')
+            history.push('/')
+        }
+        else{
+            alert('Укажите заголовок статьи ')
+        }
+        
     }
     return (
         <div className='create-article'>

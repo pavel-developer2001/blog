@@ -9,6 +9,7 @@ body {
 a {
   text-decoration: none;
   color:darkslategray;
+  cursor: pointer;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

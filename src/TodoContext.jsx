@@ -20,9 +20,18 @@ export const TodoContextProvider = (props) => {
     const addTodo = (item) => {
         setTodos([...todos, item])
     }
+    const onRemoveTodo = (index) => {
+        const idx = todos.findIndex((item) => item.id == index);
+        const items = [
+        ...todos.slice(0, idx),
+        ...todos.slice(idx + 1)
+      ]
+        setTodos(items)
+      };
+
     return (
         <TodoContext.Provider
-        value={{todos, setTodos, addTodo}}
+        value={{todos, setTodos, addTodo, onRemoveTodo}}
         >
              {props.children}
         </TodoContext.Provider>

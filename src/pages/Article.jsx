@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -14,8 +14,17 @@ import {TodoContext} from '../TodoContext'
 
 const Article= ({arcId}) => {
     const [off, setOff] = React.useState(false)
-    const {todos} = React.useContext(TodoContext)
+    const {todos, onRemoveTodo} = React.useContext(TodoContext)
     const findItem = todos.find((todo) => todo.id == arcId)
+    const history = useHistory()
+    
+    const removeTodo = () => {
+        if (global.confirm('Вы действительно хотите удалить?')) {
+            onRemoveTodo(arcId)
+            history.push('/')
+          }
+        
+    }
 
     return (
         <div className='article'>
@@ -39,38 +48,39 @@ const Article= ({arcId}) => {
                     <IconButton onClick={() => setOff(!off)} aria-label="delete">
                         <MoreVertIcon />
                     </IconButton>
-                    {off && <ModalWindow />}
+                    {off && <Grid container>
+                        <Grid item xs={12}>
+                        <Button
+                            variant="contained"
+                            color="default"
+                            startIcon={<CreateIcon />}
+                            >
+                            Редактировать
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={removeTodo}
+                            startIcon={<DeleteIcon />}
+                            >
+                            Удалить
+                            </Button>
+                        </Grid>
+                    </Grid>}
                 </Grid>
                 
             </Grid>
         </div>
     )
 }
-const ModalWindow = () => {
-    return (
-        <>
-        <Grid container>
-            <Grid item xs={12}>
-            <Button
-                variant="contained"
-                color="default"
-                startIcon={<CreateIcon />}
-                >
-                Редактировать
-                </Button>
-            </Grid>
-            <Grid item xs={12}>
-                <Button
-                variant="contained"
-                color="secondary"
-                startIcon={<DeleteIcon />}
-                >
-                Удалить
-                </Button>
-            </Grid>
-        </Grid>
-        </>
-    )
-}
+// const ModalWindow = () => {
+//     return (
+//         <>
+        
+//         </>
+//     )
+// }
 
 export default Article
