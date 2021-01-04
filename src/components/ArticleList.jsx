@@ -11,18 +11,21 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Grid from '@material-ui/core/Grid';
-
+import CardHeader from '@material-ui/core/CardHeader';
 
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       maxWidth: 345,
+    },
+    link: {
+      cursor: "pointer"
     }
   }),
 );
 
-function ArticleListItem({title, like, id}) {
+function ArticleListItem({title, like, id, date}) {
   const classes = useStyles();
   const history = useHistory()
 
@@ -42,8 +45,11 @@ function ArticleListItem({title, like, id}) {
 
   return (
     <Card className={classes.root}>
+      <CardHeader
+        subheader={date}
+      />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p" onClick={() => {
+        <Typography variant="body2" className={classes.link} color="textSecondary" component="p" onClick={() => {
             history.push(`/${id}`)}}>
           {title}
           {/* <Link to='/1'>{text}</Link> */}
@@ -62,14 +68,24 @@ function ArticleListItem({title, like, id}) {
 }
 
 const ArticleList = () => {
+  const [isLoading, setIsLoading] = React.useState(true)
+  const [isError, setIsError] = React.useState(false)
   const {todos} = React.useContext(TodoContext)
+
+  React.useEffect(() => {
+    setIsLoading(false)
+    setIsError(false)
+  }, [])
+  
     return (
         <div className='article-list'>
             <Grid container>
-                
+                {isLoading && <p>Loading</p>}
+                {isError && <p>Error</p>}
+                {todos.length == 0 && <p>Нет публикаций</p>}
                   {todos.map((obj) => {
                     return <Grid item key={obj.id}  xs={3}>
-                    <ArticleListItem title={obj.title} id={obj.id} like={obj.like} />
+                    <ArticleListItem title={obj.title} id={obj.id} like={obj.like} date={obj.date} />
                     </Grid>
                   })}  
                 

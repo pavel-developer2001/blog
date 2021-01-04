@@ -10,6 +10,9 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {TodoContext} from '../TodoContext'
 
+import { format } from 'date-fns';
+
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -31,13 +34,20 @@ const CreateArticle = () => {
     const [title, setTitle] = React.useState('')
     const [text, setText] = React.useState('')
 
-    const [todo, setTodo] = React.useState(todos)
+    const [todo, _] = React.useState(todos)
     const history = useHistory()
     
     const handleSubmit = (e) => {
         e.preventDefault();
         if(title.length > 0){
-            const newItem = { id: todo.length + 1, title, text, like: 0}
+            const newItem = {
+                 id: todo.length + 1,
+                 title,
+                 text,
+                 like: 0,
+                 date: format(new Date(), 'dd/MM/yyyy kk:mm') 
+                }
+
             addTodo(newItem)
             setTitle('')
             setText('')

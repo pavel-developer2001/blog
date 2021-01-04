@@ -4,6 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {TodoContext} from '../TodoContext'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,7 +20,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Filter() {
   const classes = useStyles();
+  const {filterTodo} = React.useContext(TodoContext)
   const [filter, setFilter] = React.useState('По последним обновлениям');
+
+  React.useEffect(() => {
+    filterTodo(filter)
+  }, [filter])
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setFilter(event.target.value as string);
@@ -36,7 +42,6 @@ export default function Filter() {
           onChange={handleChange}
           label="Filter"
         >
-          
           <MenuItem value={"По последним обновлениям"}>По последним обновлениям</MenuItem>
           <MenuItem value={"По популярности"}>По популярности</MenuItem>
     

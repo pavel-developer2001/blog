@@ -8,25 +8,29 @@ export const TodoContextProvider = (props) => {
         id: 1,
         title: "Test1",
         text: "test 1",
-        like: 8
+        like: 8,
+        date: '04/01/2021 16:12'
     },
     {
         id: 2,
         title: "Test2",
         text: "test 2",
-        like: 5
+        like: 5,
+        date: '04/01/2021 16:12'
     },
     {
         id: 3,
         title: "mobile",
         text: "test 2",
-        like: 5
+        like: 5,
+        date: '04/01/2021 16:12'
     },
     {
         id: 4,
         title: "alex",
         text: "test 2",
-        like: 5
+        like: 5,
+        date: '04/01/2021 16:12'
     },
     ])
 
@@ -51,9 +55,19 @@ export const TodoContextProvider = (props) => {
         return;        
     }
 
+    const filterTodo = (filter) => {
+        console.log(filter)
+        if (filter == 'По последним обновлениям'){
+            console.log('date')
+        }
+        if (filter == 'По популярности'){
+            console.log('popular')
+        }
+    }
+
     return (
         <TodoContext.Provider
-        value={{todos, setTodos, addTodo, onRemoveTodo, searchTodo}}
+        value={{todos, setTodos, addTodo, onRemoveTodo, searchTodo, filterTodo}}
         >
              {props.children}
         </TodoContext.Provider>
