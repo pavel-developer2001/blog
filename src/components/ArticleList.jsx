@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
+import { TodoContext } from '../TodoContext';
 
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -13,7 +14,7 @@ import Grid from '@material-ui/core/Grid';
 
 
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       maxWidth: 345,
@@ -21,14 +22,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ArticleListItem() {
+function ArticleListItem({text, like, id}) {
   const classes = useStyles();
-
+  const history = useHistory()
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          <Link to='/1'>Первый проект на material ui</Link>
+          {/* <Link to={() => history.push(`/${id}`)}>{text}</Link> */}
+          <Link to='/1'>{text}</Link>
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -36,7 +38,7 @@ function ArticleListItem() {
           <FavoriteIcon />
         </IconButton>
         <Typography variant="h6" color="textSecondary" component="span">
-          20
+          {like}
         </Typography>
       </CardActions>
     </Card>
@@ -44,30 +46,18 @@ function ArticleListItem() {
 }
 
 const ArticleList = () => {
+  const {todos} = React.useContext(TodoContext)
     return (
         <div className='article-list'>
             <Grid container>
-                <Grid item xs={3}>
-                    <ArticleListItem />
-                </Grid>
-                <Grid item xs={3}>
-                    <ArticleListItem />
-                </Grid>
-                <Grid item xs={3}>
-                    <ArticleListItem />
-                </Grid>
-                <Grid item xs={3}>
-                    <ArticleListItem />
-                </Grid>
-                <Grid item xs={3}>
-                    <ArticleListItem />
-                </Grid>
-                <Grid item xs={3}>
-                    <ArticleListItem />
-                </Grid>
-                <Grid item xs={3}>
-                    <ArticleListItem />
-                </Grid>
+                
+                  {todos.map(obj => {
+                    return <Grid item xs={3}>
+                    <ArticleListItem text={obj.text} id={obj.id} key={obj.id} like={obj.like} />
+                    </Grid>
+                  })}  
+                
+                
             </Grid>
         </div>
     )

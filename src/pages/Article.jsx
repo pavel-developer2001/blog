@@ -10,9 +10,13 @@ import CreateIcon from '@material-ui/icons/Create';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
+import {TodoContext} from '../TodoContext'
 
-const Article = () => {
+const Article= ({id}) => {
     const [off, setOff] = React.useState(false)
+    const {todos} = React.useContext(TodoContext)
+    // const item = todos.filter((prev) => prev.filter((_, cId) => id == cId))
+    // console.log(item)
     return (
         <div className='article'>
              <Grid container>
@@ -25,12 +29,10 @@ const Article = () => {
                 </Grid>
                 <Grid item xs={7}>
                     <Typography variant="h4" gutterBottom>
-                        Мой первый проект на material ui
+                        {todos.title}
                     </Typography>
                     <Typography variant="body2" gutterBottom>
-        body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-        unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-        dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+        {todos.text}
                     </Typography>
                 </Grid>
                 <Grid item xs={3}>

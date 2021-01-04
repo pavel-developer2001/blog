@@ -12,6 +12,7 @@ import Filter from '../components/Filter'
 import Search from '../components/Search'
 import ArticleList from '../components/ArticleList'
 
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Home = () => {
     const classes = useStyles()
+    
     return (
         <div className='home'>
             <Search />
