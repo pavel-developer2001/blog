@@ -5,8 +5,9 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
+import {TodoContext} from '../TodoContext'
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       padding: '2px 4px',
@@ -29,13 +30,25 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function Search() {
+  const [searchTerm, setSearchTerm] =  React.useState('')
+  const {searchTodo} = React.useContext(TodoContext)
+
+  React.useEffect(() => {
+    searchTodo(searchTerm)
+  }, [searchTerm])
+  // const searchArticle = (e) => {
+  //   e.preventDefault();
+  //   searchTodo(searchTerm)
+  // }
   const classes = useStyles();
   return (
-    <Paper component="form" className={classes.root}>
+    <Paper component="form" className={classes.root} >
       <IconButton type="submit" className={classes.iconButton} aria-label="search">
         <SearchIcon />
       </IconButton>
-      <InputBase
+      <InputBase 
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
         className={classes.input}
         placeholder="Поиск"
         inputProps={{ 'aria-label': 'search google maps' }}
