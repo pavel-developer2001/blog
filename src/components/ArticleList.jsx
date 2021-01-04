@@ -25,7 +25,21 @@ const useStyles = makeStyles((theme) =>
 function ArticleListItem({title, like, id}) {
   const classes = useStyles();
   const history = useHistory()
-  
+
+  const [likes, setLikes] = React.useState(like)
+  const [check, setCheck] = React.useState(false)
+
+  const handleLike = () => {
+    if(check){
+      setLikes(likes - 1)
+      setCheck(!check)
+    }
+    if(!check){
+      setLikes(likes +  1)
+      setCheck(!check)
+    }   
+  }
+
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -36,11 +50,11 @@ function ArticleListItem({title, like, id}) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" color={check ? 'secondary' : 'textSecondary'} onClick={handleLike}>
           <FavoriteIcon />
         </IconButton>
-        <Typography variant="h6" color="textSecondary" component="span">
-          {like}
+        <Typography variant="h6" color={check ? 'secondary' : 'textSecondary'} component="span">
+          {likes}
         </Typography>
       </CardActions>
     </Card>
