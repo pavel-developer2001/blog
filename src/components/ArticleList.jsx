@@ -52,7 +52,6 @@ function ArticleListItem({title, like, id, date}) {
         <Typography variant="body2" className={classes.link} color="textSecondary" component="p" onClick={() => {
             history.push(`/${id}`)}}>
           {title}
-          {/* <Link to='/1'>{text}</Link> */}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

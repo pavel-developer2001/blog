@@ -46,8 +46,7 @@ const CreateArticle = () => {
                  text,
                  like: 0,
                  date: format(new Date(), 'dd/MM/yyyy kk:mm') 
-                }
-
+            }
             addTodo(newItem)
             setTitle('')
             setText('')

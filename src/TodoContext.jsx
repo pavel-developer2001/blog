@@ -65,9 +65,18 @@ export const TodoContextProvider = (props) => {
         }
     }
 
+    const editTodo = (editItem) => {
+        const findItem = todos.findIndex((item) => item.id == editItem.id);
+        const items = [
+            ...todos.slice(0, findItem),
+            ...todos.slice(findItem + 1)
+          ]
+        setTodos([...items, editItem])  
+    }
+
     return (
         <TodoContext.Provider
-        value={{todos, setTodos, addTodo, onRemoveTodo, searchTodo, filterTodo}}
+        value={{todos, setTodos, addTodo, onRemoveTodo, searchTodo, filterTodo, editTodo}}
         >
              {props.children}
         </TodoContext.Provider>

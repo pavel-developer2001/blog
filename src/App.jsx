@@ -17,7 +17,6 @@ const App = () => {
            <Route path='/:id' render={({match}) => {
         const {id} = match.params;
         return <Article arcId ={id}/> }} />
-        {/* <Route exact path='/:id' component={Article} /> */}
          </Switch>
       </Router>
       </TodoContextProvider>
