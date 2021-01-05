@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-import Example from '../components/Example'
 import Filter from '../components/Filter'
 import Search from '../components/Search'
 import ArticleList from '../components/ArticleList'

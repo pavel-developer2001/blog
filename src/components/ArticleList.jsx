@@ -14,6 +14,7 @@ import Grid from '@material-ui/core/Grid';
 import CardHeader from '@material-ui/core/CardHeader';
 
 
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -70,25 +71,27 @@ const ArticleList = () => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [isError, setIsError] = React.useState(false)
   const {todos} = React.useContext(TodoContext)
+  const [todos2, setTodos2] = React.useState(todos)
 
   React.useEffect(() => {
     setIsLoading(false)
     setIsError(false)
-  }, [])
+    console.log('Before',todos)
+    setTodos2(todos)
+    console.log('After',todos2)
+  }, [todos, todos2])
   
     return (
         <div className='article-list'>
             <Grid container>
                 {isLoading && <p>Loading</p>}
                 {isError && <p>Error</p>}
-                {todos.length == 0 && <p>Нет публикаций</p>}
-                  {todos.map((obj) => {
+                {todos2.length == 0 && <p>Нет публикаций</p>}
+                  {todos2.map((obj) => {
                     return <Grid item key={obj.id}  xs={3}>
                     <ArticleListItem title={obj.title} id={obj.id} like={obj.like} date={obj.date} />
                     </Grid>
                   })}  
-                
-                
             </Grid>
         </div>
     )

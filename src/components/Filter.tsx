@@ -18,10 +18,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+export const firterList = {
+  DATE: 'По последним обновлениям',
+  POPULAR: 'По популярности'
+} 
+
 export default function Filter() {
   const classes = useStyles();
   const {filterTodo} = React.useContext(TodoContext)
-  const [filter, setFilter] = React.useState('По последним обновлениям');
+  const [filter, setFilter] = React.useState(firterList.DATE);
 
   React.useEffect(() => {
     filterTodo(filter)
@@ -42,8 +47,8 @@ export default function Filter() {
           onChange={handleChange}
           label="Filter"
         >
-          <MenuItem value={"По последним обновлениям"}>По последним обновлениям</MenuItem>
-          <MenuItem value={"По популярности"}>По популярности</MenuItem>
+          <MenuItem value={firterList.DATE}>По последним обновлениям</MenuItem>
+          <MenuItem value={firterList.POPULAR}>По популярности</MenuItem>
     
         </Select>
       </FormControl>

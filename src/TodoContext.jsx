@@ -8,14 +8,14 @@ export const TodoContextProvider = (props) => {
         id: 1,
         title: "Test1",
         text: "test 1",
-        like: 8,
+        like: 888,
         date: '04/01/2021 16:12'
     },
     {
         id: 2,
         title: "Test2",
         text: "test 2",
-        like: 5,
+        like: 5999,
         date: '04/01/2021 16:12'
     },
     {
@@ -29,7 +29,7 @@ export const TodoContextProvider = (props) => {
         id: 4,
         title: "alex",
         text: "test 2",
-        like: 5,
+        like: 57,
         date: '04/01/2021 16:12'
     },
     ])
@@ -56,12 +56,13 @@ export const TodoContextProvider = (props) => {
     }
 
     const filterTodo = (filter) => {
-        console.log(filter)
         if (filter == 'По последним обновлениям'){
-            console.log('date')
+            const sortedData = todos.sort((a,b) => b.id-a.id)
+            setTodos(sortedData)   
         }
         if (filter == 'По популярности'){
-            console.log('popular')
+            const sortedPopular = todos.sort((a, b) => b.like-a.like)
+            setTodos(sortedPopular)
         }
     }
 
