@@ -5,7 +5,8 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-import {searchItem} from '../redux/actions'
+// import {searchItem} from '../redux/actions'
+import {searchItem} from '../redux/reducer'
 import {useDispatch, useSelector} from 'react-redux'
 
 
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) =>
 
 export default function Search() {
   const [searchTerm, setSearchTerm] =  React.useState('')
-  const todos = useSelector(item => item)
+  const todos = useSelector(item => item.items)
   const dispatch = useDispatch()
 
   React.useEffect(() => {

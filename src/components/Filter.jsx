@@ -6,7 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 
-import {filterItem} from '../redux/actions'
+// import {filterItem} from '../redux/actions'
+import {filterItem} from '../redux/reducer'
 import {useDispatch, useSelector} from 'react-redux'
 
 const useStyles = makeStyles((theme) =>
@@ -30,7 +31,7 @@ export default function Filter() {
   const classes = useStyles();
   const [filter, setFilter] = React.useState(firterList.DATE);
 
-  const todos = useSelector(item => item)
+  const todos = useSelector(item => item.items)
   const dispatch = useDispatch()
 
   React.useEffect(() => {

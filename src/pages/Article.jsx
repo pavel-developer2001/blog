@@ -14,7 +14,8 @@ import TextField from '@material-ui/core/TextField';
 import CheckIcon from '@material-ui/icons/Check';
 
 import {useSelector, useDispatch} from 'react-redux'
-import {removeItem, editItem} from '../redux/actions'
+// import {removeItem, editItem} from '../redux/actions'
+import {removeItem, editItem} from '../redux/reducer'
 
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) =>
 const Article= ({arcId}) => {
     const classes = useStyles();
     const [off, setOff] = React.useState(false)
-    const todos = useSelector(item => item)
+    const todos = useSelector(item => item.items)
     const dispatch = useDispatch()
     const findItem = todos.find((todo) => todo.id == arcId)
     const history = useHistory()

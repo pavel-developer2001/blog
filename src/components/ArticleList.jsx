@@ -72,7 +72,7 @@ function ArticleListItem({title, like, id, date}) {
 const ArticleList = () => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [isError, setIsError] = React.useState(false)
-  const todos = useSelector(item => item)
+  const todos = useSelector(item => item.items)
   const [todos2, setTodos2] = React.useState(todos)
 
   React.useEffect(() => {

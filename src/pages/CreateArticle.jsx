@@ -11,7 +11,8 @@ import TextField from '@material-ui/core/TextField';
 
 
 import {useSelector, useDispatch} from 'react-redux'
-import {addItem} from '../redux/actions'
+// import {addItem} from '../redux/actions'
+import {addItem} from '../redux/reducer'
 
 import { format } from 'date-fns';
 
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) =>
 
 const CreateArticle = () => {
     const classes = useStyles();
-    const todos = useSelector(item => item)
+    const todos = useSelector(item => item.items)
     const dispatch = useDispatch()
     const [title, setTitle] = React.useState('')
     const [text, setText] = React.useState('')
