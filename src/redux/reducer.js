@@ -1,4 +1,4 @@
-import {addItem} from './types'
+import {addItem, removeItem, searchItem, filterItem, editItem} from './types'
 
 const initialState = [
     {
@@ -31,12 +31,20 @@ const initialState = [
     },
     ]
 
-const mainReducer = (state=initialState) => {
+const mainReducer = (state=initialState, action) => {
     switch (action.type){
         case addItem:
             return [
                 ...state, action.payload
             ]
+        case removeItem:
+              return action.payload
+        case searchItem:
+              return action.payload     
+        case filterItem:
+              return action.payload
+        case editItem:
+              return action.payload
         default:
             return state    
     }

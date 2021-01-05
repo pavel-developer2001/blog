@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, useHistory, withRouter} from 'react-router-dom'
-import { TodoContext } from '../TodoContext';
+
 
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Grid from '@material-ui/core/Grid';
 import CardHeader from '@material-ui/core/CardHeader';
+
+import {useSelector} from 'react-redux'
 
 
 
@@ -70,7 +72,7 @@ function ArticleListItem({title, like, id, date}) {
 const ArticleList = () => {
   const [isLoading, setIsLoading] = React.useState(true)
   const [isError, setIsError] = React.useState(false)
-  const {todos} = React.useContext(TodoContext)
+  const todos = useSelector(item => item)
   const [todos2, setTodos2] = React.useState(todos)
 
   React.useEffect(() => {

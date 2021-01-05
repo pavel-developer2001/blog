@@ -8,7 +8,10 @@ import Button from '@material-ui/core/Button';
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import {TodoContext} from '../TodoContext'
+
+
+import {useSelector, useDispatch} from 'react-redux'
+import {addItem} from '../redux/actions'
 
 import { format } from 'date-fns';
 
@@ -30,7 +33,8 @@ const useStyles = makeStyles((theme) =>
 
 const CreateArticle = () => {
     const classes = useStyles();
-    const {todos, addTodo} = React.useContext(TodoContext)
+    const todos = useSelector(item => item)
+    const dispatch = useDispatch()
     const [title, setTitle] = React.useState('')
     const [text, setText] = React.useState('')
 
@@ -47,7 +51,7 @@ const CreateArticle = () => {
                  like: 0,
                  date: format(new Date(), 'dd/MM/yyyy kk:mm') 
             }
-            addTodo(newItem)
+            dispatch(addItem(newItem))
             setTitle('')
             setText('')
             history.push('/')

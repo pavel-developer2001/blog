@@ -4,12 +4,11 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import CreateArticle from './pages/CreateArticle'
 import Article from './pages/Article'
-import {TodoContextProvider} from './TodoContext'
+
 
 const App = () => {
   return (
     <div className="App">
-      <TodoContextProvider >
        <Router>
          <Switch>
            <Route exact path='/' component={Home} />
@@ -19,7 +18,6 @@ const App = () => {
         return <Article arcId ={id}/> }} />
          </Switch>
       </Router>
-      </TodoContextProvider>
     </div>
   );
 }

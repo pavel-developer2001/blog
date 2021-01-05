@@ -4,9 +4,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import {TodoContext} from '../TodoContext'
 
-const useStyles = makeStyles((theme: Theme) =>
+
+import {filterItem} from '../redux/actions'
+import {useDispatch, useSelector} from 'react-redux'
+
+const useStyles = makeStyles((theme) =>
   createStyles({
     formControl: {
       margin: theme.spacing(1),
@@ -25,15 +28,24 @@ export const firterList = {
 
 export default function Filter() {
   const classes = useStyles();
-  const {filterTodo} = React.useContext(TodoContext)
   const [filter, setFilter] = React.useState(firterList.DATE);
 
+  const todos = useSelector(item => item)
+  const dispatch = useDispatch()
+
   React.useEffect(() => {
-    filterTodo(filter)
+    if (filter == firterList.DATE){
+      const sortedData = todos.sort((a,b) => b.id-a.id)
+      dispatch(filterItem(sortedData))  
+  }
+  if (filter == firterList.POPULAR){
+      const sortedPopular = todos.sort((a, b) => b.like-a.like)
+      dispatch(filterItem(sortedPopular))
+  }
   }, [filter])
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setFilter(event.target.value as string);
+  const handleChange = (event) => {
+    setFilter(event.target.value);
   };
 
   return (

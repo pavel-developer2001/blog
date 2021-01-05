@@ -10,9 +10,12 @@ import CreateIcon from '@material-ui/icons/Create';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-import {TodoContext} from '../TodoContext'
 import TextField from '@material-ui/core/TextField';
 import CheckIcon from '@material-ui/icons/Check';
+
+import {useSelector, useDispatch} from 'react-redux'
+import {removeItem, editItem} from '../redux/actions'
+
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) =>
@@ -32,7 +35,8 @@ const useStyles = makeStyles((theme) =>
 const Article= ({arcId}) => {
     const classes = useStyles();
     const [off, setOff] = React.useState(false)
-    const {todos, onRemoveTodo, editTodo} = React.useContext(TodoContext)
+    const todos = useSelector(item => item)
+    const dispatch = useDispatch()
     const findItem = todos.find((todo) => todo.id == arcId)
     const history = useHistory()
 
@@ -44,22 +48,34 @@ const Article= ({arcId}) => {
     }, [findItem])
     const removeTodo = () => {
         if (global.confirm('Вы действительно хотите удалить?')) {
-            onRemoveTodo(arcId)
+            const idx = todos.findIndex((state) => state.id == arcId);
+            const items = [
+                ...todos.slice(0, idx),
+                ...todos.slice(idx + 1)
+              ]
+            dispatch(removeItem(items))
             history.push('/')
           }
     }
 
     const handleEdit = (e) => {
         e.preventDefault()
-        const editItem = {
+        const newEditItem = {
             id: findItem.id,
             title,
             text,
             like: findItem.like,
             date: findItem.date
         }
-        editTodo(editItem)
+        const findItemArray = todos.findIndex((item) => item.id == newEditItem.id);
+        const items = [
+            ...todos.slice(0, findItemArray),
+            ...todos.slice(findItemArray  + 1)
+          ]
+        const edit = [...items, newEditItem]  
+        dispatch(editItem(edit))
         setEditing(!editing)
+        setOff(!off)
     }
 
     return (

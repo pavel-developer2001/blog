@@ -5,7 +5,9 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-import {TodoContext} from '../TodoContext'
+import {searchItem} from '../redux/actions'
+import {useDispatch, useSelector} from 'react-redux'
+
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -31,15 +33,16 @@ const useStyles = makeStyles((theme) =>
 
 export default function Search() {
   const [searchTerm, setSearchTerm] =  React.useState('')
-  const {searchTodo} = React.useContext(TodoContext)
+  const todos = useSelector(item => item)
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
-    searchTodo(searchTerm)
+    if (searchTerm.length > 0){
+      const results = todos.filter(todo => todo.title.toLowerCase().includes(searchTerm));
+      dispatch(searchItem(results)) 
+  }
   }, [searchTerm])
-  // const searchArticle = (e) => {
-  //   e.preventDefault();
-  //   searchTodo(searchTerm)
-  // }
+ 
   const classes = useStyles();
   return (
     <Paper component="form" className={classes.root} >
