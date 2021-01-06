@@ -15,7 +15,7 @@ import CheckIcon from '@material-ui/icons/Check';
 
 import {useSelector, useDispatch} from 'react-redux'
 // import {removeItem, editItem} from '../redux/actions'
-import {removeItem, editItem} from '../redux/reducer'
+import {removeItem, editItem} from '../redux/itemsSlice'
 
 
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';

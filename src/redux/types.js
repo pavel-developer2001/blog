@@ -1,5 +1,0 @@
-export const addItem = 'ADD_ITEM'
-export const removeItem = 'REMOVE_ITEM'
-export const searchItem = 'SEARCH_ITEM'
-export const filterItem = 'FILTER_ITEM'
-export const editItem = 'EDIT_ITEM'

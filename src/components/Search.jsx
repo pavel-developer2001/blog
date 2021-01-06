@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
 // import {searchItem} from '../redux/actions'
-import {searchItem} from '../redux/reducer'
+import {searchItem} from '../redux/itemsSlice'
 import {useDispatch, useSelector} from 'react-redux'
 
 

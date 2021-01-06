@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 
 
 // import {filterItem} from '../redux/actions'
-import {filterItem} from '../redux/reducer'
+import {filterItem} from '../redux/itemsSlice'
 import {useDispatch, useSelector} from 'react-redux'
 
 const useStyles = makeStyles((theme) =>

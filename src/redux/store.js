@@ -2,7 +2,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 
 import { combineReducers } from 'redux'
-import itemsReducer from './reducer'
+import itemsReducer from './itemsSlice'
 
 // const store = createStore(
 //     mainReducer,

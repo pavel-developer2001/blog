@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 
 import {useSelector, useDispatch} from 'react-redux'
 // import {addItem} from '../redux/actions'
-import {addItem} from '../redux/reducer'
+import {addItem} from '../redux/itemsSlice'
 
 import { format } from 'date-fns';
 
