@@ -1,18 +1,18 @@
-import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
+import React from "react";
+import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import InputBase from "@material-ui/core/InputBase";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
 
-import {TodoContext} from '../TodoContext'
+import { TodoContext } from "../TodoContext";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      padding: '2px 4px',
-      display: 'flex',
-      alignItems: 'center',
+      padding: "2px 4px",
+      display: "flex",
+      alignItems: "center",
       width: 400,
     },
     input: {
@@ -26,32 +26,36 @@ const useStyles = makeStyles((theme) =>
       height: 28,
       margin: 4,
     },
-  }),
+  })
 );
 
 export default function Search() {
-  const [searchTerm, setSearchTerm] =  React.useState('')
-  const {searchTodo} = React.useContext(TodoContext)
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const { searchTodo } = React.useContext(TodoContext);
 
   React.useEffect(() => {
-    searchTodo(searchTerm)
-  }, [searchTerm])
+    searchTodo(searchTerm);
+  }, [searchTerm]);
   // const searchArticle = (e) => {
   //   e.preventDefault();
   //   searchTodo(searchTerm)
   // }
   const classes = useStyles();
   return (
-    <Paper component="form" className={classes.root} >
-      <IconButton type="submit" className={classes.iconButton} aria-label="search">
+    <Paper component="form" className={classes.root}>
+      <IconButton
+        type="submit"
+        className={classes.iconButton}
+        aria-label="search"
+      >
         <SearchIcon />
       </IconButton>
-      <InputBase 
+      <InputBase
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className={classes.input}
         placeholder="Поиск"
-        inputProps={{ 'aria-label': 'search google maps' }}
+        inputProps={{ "aria-label": "search google maps" }}
       />
     </Paper>
   );

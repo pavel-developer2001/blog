@@ -1,10 +1,10 @@
-import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import {TodoContext} from '../TodoContext'
+import React from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import { TodoContext } from "../TodoContext";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,22 +15,22 @@ const useStyles = makeStyles((theme: Theme) =>
     selectEmpty: {
       marginTop: theme.spacing(2),
     },
-  }),
+  })
 );
 
 export const firterList = {
-  DATE: 'По последним обновлениям',
-  POPULAR: 'По популярности'
-} 
+  DATE: "По последним обновлениям",
+  POPULAR: "По популярности",
+};
 
 export default function Filter() {
   const classes = useStyles();
-  const {filterTodo} = React.useContext(TodoContext)
+  const { filterTodo } = React.useContext(TodoContext);
   const [filter, setFilter] = React.useState(firterList.DATE);
 
   React.useEffect(() => {
-    filterTodo(filter)
-  }, [filter])
+    filterTodo(filter);
+  }, [filter]);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setFilter(event.target.value as string);
@@ -49,10 +49,8 @@ export default function Filter() {
         >
           <MenuItem value={firterList.DATE}>По последним обновлениям</MenuItem>
           <MenuItem value={firterList.POPULAR}>По популярности</MenuItem>
-    
         </Select>
       </FormControl>
-      
     </div>
   );
 }
