@@ -15,7 +15,7 @@ import TextField from "@material-ui/core/TextField";
 import CheckIcon from "@material-ui/icons/Check";
 
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       "& .MuiTextField-root": {
@@ -29,11 +29,21 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Article = ({ arcId }) => {
+type arcIdType = {
+  arcId: number;
+};
+type todoType = {
+  id: number;
+  title: string;
+  text: string;
+  likes: number;
+  date: number;
+};
+const Article = ({ arcId }: arcIdType) => {
   const classes = useStyles();
   const [off, setOff] = React.useState(false);
   const { todos, onRemoveTodo, editTodo } = React.useContext(TodoContext);
-  const findItem = todos.find((todo) => todo.id == arcId);
+  const findItem = todos.find((todo: todoType) => todo.id == arcId);
   const history = useHistory();
 
   const [editing, setEditing] = React.useState(false);
@@ -47,7 +57,11 @@ const Article = ({ arcId }) => {
     }
   };
 
-  const handleEdit = (e) => {
+  const handleEdit = (
+    e:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
     e.preventDefault();
     const editItem = {
       id: findItem.id,

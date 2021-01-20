@@ -7,7 +7,7 @@ import SearchIcon from "@material-ui/icons/Search";
 
 import { TodoContext } from "../TodoContext";
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       padding: "2px 4px",

@@ -13,7 +13,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import Grid from "@material-ui/core/Grid";
 import CardHeader from "@material-ui/core/CardHeader";
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       maxWidth: 345,
@@ -24,7 +24,14 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-function ArticleListItem({ title, like, id, date }) {
+type ArticleItem = {
+  title: string;
+  like: number;
+  id: number;
+  date: number;
+};
+
+function ArticleListItem({ title, like, id, date }: ArticleItem) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -61,7 +68,7 @@ function ArticleListItem({ title, like, id, date }) {
       <CardActions disableSpacing>
         <IconButton
           aria-label="add to favorites"
-          color={check ? "secondary" : "textSecondary"}
+          color={check ? "secondary" : "primary"}
           onClick={handleLike}
         >
           <FavoriteIcon />
@@ -98,7 +105,7 @@ const ArticleList = () => {
         {isLoading && <p>Loading</p>}
         {isError && <p>Error</p>}
         {todos2.length == 0 && <p>Нет публикаций</p>}
-        {todos2.map((obj) => {
+        {todos2.map((obj: ArticleItem) => {
           return (
             <Grid item key={obj.id} xs={3}>
               <ArticleListItem

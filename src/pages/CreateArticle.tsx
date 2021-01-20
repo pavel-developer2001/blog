@@ -12,7 +12,7 @@ import { TodoContext } from "../TodoContext";
 
 import { format } from "date-fns";
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       "& .MuiTextField-root": {
@@ -36,7 +36,11 @@ const CreateArticle = () => {
   const [todo, _] = React.useState(todos);
   const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (
+    e:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
     e.preventDefault();
     if (title.length > 0) {
       const newItem = {
