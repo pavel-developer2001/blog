@@ -38,6 +38,8 @@ export default function Search() {
   }, [searchTerm]);
   // const searchArticle = (e) => {
   //   e.preventDefault();
+  //   e.preventDefault();
+  //   searchTodo(searchTerm)
   //   searchTodo(searchTerm)
   // }
   const classes = useStyles();

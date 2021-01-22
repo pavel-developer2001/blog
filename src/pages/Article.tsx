@@ -39,7 +39,7 @@ type todoType = {
   likes: number;
   date: number;
 };
-const Article = ({ arcId }: arcIdType) => {
+const Article: React.FC<arcIdType> = ({ arcId }) => {
   const classes = useStyles();
   const [off, setOff] = React.useState(false);
   const { todos, onRemoveTodo, editTodo } = React.useContext(TodoContext);

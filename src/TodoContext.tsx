@@ -1,9 +1,26 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 
-export const TodoContext = React.createContext();
+export type todoType = {
+  id: number;
+  title: string;
+  text: string;
+  like: number;
+  date: string;
+};
+type contextType = {
+  todos: Array<{}>;
+  setTodos: React.Dispatch<SetStateAction<todoType[]>>;
+  addTodo: (item: todoType) => void;
+  onRemoveTodo: (index: number) => void;
+  searchTodo: (text: string) => void;
+  filterTodo: (filter: string) => void;
+  editTodo: (editItem: todoType) => void;
+};
 
-export const TodoContextProvider = (props) => {
-  const [todos, setTodos] = React.useState([
+export const TodoContext = React.createContext<any>(null);
+
+export const TodoContextProvider = (props: any) => {
+  const [todos, setTodos] = React.useState<Array<todoType>>([
     {
       id: 1,
       title: "Test1",
@@ -34,27 +51,28 @@ export const TodoContextProvider = (props) => {
     },
   ]);
 
-  const addTodo = (item) => {
+  const addTodo = (item: any) => {
     setTodos([...todos, item]);
   };
 
-  const onRemoveTodo = (index) => {
+  const onRemoveTodo = (index: number) => {
     const idx = todos.findIndex((item) => item.id == index);
     const items = [...todos.slice(0, idx), ...todos.slice(idx + 1)];
     setTodos(items);
   };
 
-  const searchTodo = (text) => {
+  const searchTodo = (text: string) => {
     if (text.length > 0) {
       const results = todos.filter((todo) =>
         todo.title.toLowerCase().includes(text)
       );
       setTodos(results);
+    } else {
+      return todos;
     }
-    return;
   };
 
-  const filterTodo = (filter) => {
+  const filterTodo = (filter: string) => {
     if (filter == "По последним обновлениям") {
       const sortedData = todos.sort((a, b) => b.id - a.id);
       setTodos(sortedData);
@@ -65,7 +83,7 @@ export const TodoContextProvider = (props) => {
     }
   };
 
-  const editTodo = (editItem) => {
+  const editTodo = (editItem: any) => {
     const findItem = todos.findIndex((item) => item.id == editItem.id);
     const items = [...todos.slice(0, findItem), ...todos.slice(findItem + 1)];
     setTodos([...items, editItem]);

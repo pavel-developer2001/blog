@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory, withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { TodoContext } from "../TodoContext";
 
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
@@ -31,7 +31,7 @@ type ArticleItem = {
   date: number;
 };
 
-function ArticleListItem({ title, like, id, date }: ArticleItem) {
+const ArticleListItem: React.FC<ArticleItem> = ({ title, like, id, date }) => {
   const classes = useStyles();
   const history = useHistory();
 
@@ -68,7 +68,7 @@ function ArticleListItem({ title, like, id, date }: ArticleItem) {
       <CardActions disableSpacing>
         <IconButton
           aria-label="add to favorites"
-          color={check ? "secondary" : "primary"}
+          color={check ? "secondary" : "default"}
           onClick={handleLike}
         >
           <FavoriteIcon />
@@ -83,7 +83,7 @@ function ArticleListItem({ title, like, id, date }: ArticleItem) {
       </CardActions>
     </Card>
   );
-}
+};
 
 const ArticleList = () => {
   const [isLoading, setIsLoading] = React.useState(true);
