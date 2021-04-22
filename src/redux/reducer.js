@@ -54,7 +54,7 @@ const mainReducer = (state = initialState, action) => {
 			);
 
 		case filterItem:
-			if (action.payload === firterList.POPULAR) {
+			if (action.payload === firterList.DATE) {
 				return state.sort((a, b) => b.id - a.id);
 			} else {
 				return state.sort((a, b) => b.like - a.like);
