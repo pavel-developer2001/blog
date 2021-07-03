@@ -43,7 +43,7 @@ const Article: React.FC<arcIdType> = ({ arcId }) => {
   const classes = useStyles();
   const [off, setOff] = React.useState(false);
   const { todos, onRemoveTodo, editTodo } = React.useContext(TodoContext);
-  const findItem = todos.find((todo: todoType) => todo.id === arcId);
+  const findItem = todos.find((todo: todoType) => todo.id == arcId);
   const history = useHistory();
 
   const [editing, setEditing] = React.useState(false);

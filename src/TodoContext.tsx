@@ -56,7 +56,7 @@ export const TodoContextProvider = (props: any) => {
   };
 
   const onRemoveTodo = (index: number) => {
-    const idx = todos.findIndex((item) => item.id === index);
+    const idx = todos.findIndex((item) => item.id == index);
     const items = [...todos.slice(0, idx), ...todos.slice(idx + 1)];
     setTodos(items);
   };
@@ -84,7 +84,7 @@ export const TodoContextProvider = (props: any) => {
   };
 
   const editTodo = (editItem: any) => {
-    const findItem = todos.findIndex((item) => item.id === editItem.id);
+    const findItem = todos.findIndex((item) => item.id == editItem.id);
     const items = [...todos.slice(0, findItem), ...todos.slice(findItem + 1)];
     setTodos([...items, editItem]);
   };
