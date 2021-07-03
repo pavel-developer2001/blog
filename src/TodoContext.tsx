@@ -56,7 +56,7 @@ export const TodoContextProvider = (props: any) => {
   };
 
   const onRemoveTodo = (index: number) => {
-    const idx = todos.findIndex((item) => item.id == index);
+    const idx = todos.findIndex((item) => item.id === index);
     const items = [...todos.slice(0, idx), ...todos.slice(idx + 1)];
     setTodos(items);
   };
@@ -73,18 +73,18 @@ export const TodoContextProvider = (props: any) => {
   };
 
   const filterTodo = (filter: string) => {
-    if (filter == "По последним обновлениям") {
+    if (filter === "По последним обновлениям") {
       const sortedData = todos.sort((a, b) => b.id - a.id);
       setTodos(sortedData);
     }
-    if (filter == "По популярности") {
+    if (filter === "По популярности") {
       const sortedPopular = todos.sort((a, b) => b.like - a.like);
       setTodos(sortedPopular);
     }
   };
 
   const editTodo = (editItem: any) => {
-    const findItem = todos.findIndex((item) => item.id == editItem.id);
+    const findItem = todos.findIndex((item) => item.id === editItem.id);
     const items = [...todos.slice(0, findItem), ...todos.slice(findItem + 1)];
     setTodos([...items, editItem]);
   };

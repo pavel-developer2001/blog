@@ -94,9 +94,8 @@ const ArticleList = () => {
   React.useEffect(() => {
     setIsLoading(false);
     setIsError(false);
-    console.log("Before", todos);
+
     setTodos2(todos);
-    console.log("After", todos2);
   }, [todos, todos2]);
 
   return (
@@ -104,7 +103,7 @@ const ArticleList = () => {
       <Grid container>
         {isLoading && <p>Loading</p>}
         {isError && <p>Error</p>}
-        {todos2.length == 0 && <p>Нет публикаций</p>}
+        {todos2.length === 0 && <p>Нет публикаций</p>}
         {todos2.map((obj: ArticleItem) => {
           return (
             <Grid item key={obj.id} xs={3}>

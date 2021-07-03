@@ -33,7 +33,7 @@ const CreateArticle = () => {
   const [title, setTitle] = React.useState("");
   const [text, setText] = React.useState("");
 
-  const [todo, _] = React.useState(todos);
+  const [todo] = React.useState(todos);
   const history = useHistory();
 
   const handleSubmit = (
